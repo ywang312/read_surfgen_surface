@@ -1,0 +1,24 @@
+This is a standalone read surfgen surface routine
+Please make sure ifort is available and $MKLROOT variable is properly set
+
+in the source directory, execute:
+make clean
+make
+this will create two executables,
+main.x for a simple test plot of surfaces, and
+evalsurf.x for a evaluation subroutine
+
+in t1 directory or coupled-s0-s1 directory
+execute
+../source/main.x
+../source/evalsurf.x geom.test
+to test the performance
+
+To incoorporate the evaluatesurfgen subroutine into your own program,
+include libsurfgen.a in the compilation and
+call EvaluateSurfgen(geom,e,cg,h,dcg)
+geom : input (3,natoms) array
+e    : energies (nstates) array for energy of s0, s1 respectively. Note for t1 they are equal
+cg   : energy gradients
+h    : diabatic Hamiltonian matrix (nstates*nstates) array
+dcg  : diabatic energy gradients
